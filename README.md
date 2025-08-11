@@ -1,7 +1,5 @@
 # area-touch-mit-license
 
-## 【Python】画像のタッチデータのエリア集計と可視化
-
 画像内のエリアごとに、ユーザーの「好き・嫌い」座標タッチを集計・可視化するPythonツールです。  
 車の写真を例に、調査データから各エリアの支持・不支持傾向を分析できます。
 
@@ -40,30 +38,29 @@ Python3系が必要です。
 pip install pandas matplotlib openpyxl japanize-matplotlib streamlit opencv-python
 ```
 
-2. エリア定義の準備
+### 2. エリア定義の準備
 xy_points.csv に画像上の多角形エリアの頂点座標を用意します。
-形式例はリポジトリ内のファイルを参照してください。
+[参照](https://github.com/iwakazusuwa/area-labeler-mit-license)
 
-3. 調査データ準備
+### 3. 調査データ準備（sample.csv）
 sample.csv は調査対象者のIDと「好き」「嫌い」ポイントの座標を含みます。
 好き・嫌いは最大2点ずつ登録可能です。
 
-4. 集計と可視化の実行
+### 4. 集計と可視化の実行
 ```
-python analyzer.py
+analyzer.py　ダブルクリック
 ```
 area_summary_rule.xlsx に集計結果（各エリアのlike/dislike/none数と比率）を書き出します。
 
 好き vs 嫌い 比率の散布図を表示します。
-
-5. ルール適用後の有効座標抽出（おまけ）
-```
-python draw_helper.py
-```
-
 相殺ルール適用後の「有効な」好き・嫌い座標のみを rule_xy_points.csv に書き出します。
 
-その座標を元に、元画像に好き（青）・嫌い（赤）ポイントを描画し、rule_likes_dislikes.png として保存します。
+### 5. ルール適用後の有効座標抽出
+```
+draw_helper.py　ダブルクリック
+```
+
+rule_xy_points.csvを元に、元画像に好き（青）・嫌い（赤）ポイントを描画し、rule_likes_dislikes.png として保存します。
 
 
 ## 集計ルール
@@ -78,14 +75,14 @@ python draw_helper.py
 | like=0, dislike=0 | ×（カウントなし）             |
 ```
 
-注意点
+## 注意点
 - xy_points.csv の多角形座標は時計回りまたは反時計回りで、閉じた多角形として正しく順序付けしてください。
 
 - タッチ座標が画像外、もしくは定義外のエリアにある場合は「none」として集計されます。
 
 - 鋭角なエリアの場合、座標判定が意図と異なることがあるため、必ずプロット画像を確認してください。
 
-LICENSE
+## LICENSE
 MIT License（詳細はLICENSEファイルをご参照ください）
 
-開発者： iwakazusuwa(Swatchp)
+#### 開発者： iwakazusuwa(Swatchp)
